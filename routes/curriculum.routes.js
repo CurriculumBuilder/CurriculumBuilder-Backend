@@ -60,4 +60,53 @@ router.post("/curriculums", (req, res, next) => {
     });
 });
 
+
+// PUT /curriculums/:curriculumId
+router.put("/curriculums/:curriculumId", (req, res, next) => {
+  const { curriculumId } = req.params;
+
+  const { 
+    userId,
+    personalData: { name, phone, email, address, summary },
+    links,
+    skills,
+    languages,
+    projects,
+    experience,
+    education,
+    awards
+  } = req.body;
+
+  const newRequestBody = {
+    userId,
+    personalData: { name, phone, email, address, summary },
+    links,
+    skills,
+    languages,
+    projects,
+    experience,
+    education,
+    awards
+  }
+
+  Curriculum.findByIdAndUpdate(curriculumId, newRequestBody,{new:true})
+    .then((updatedCurriculum) => {
+      res.status(200).json(updatedCurriculum)
+    }).catch(() => {
+      next(error)
+    });
+})
+
+// Delete /curriculums/:curriculumId
+router.delete("/curriculums/:curriculumId", (req, res, next) => {
+  const { curriculumId } = req.params;
+  Curriculum.findByIdAndDelete(curriculumId)
+    .then(() => {
+      res.status(204).send()
+    })
+    .catch((error) => {
+      next(error)
+    });
+});
+
 module.exports = router;
