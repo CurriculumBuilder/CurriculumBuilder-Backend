@@ -46,7 +46,7 @@ router.get("/curriculums", (req, res) => {
 router.post("/curriculums", (req, res, next) => {
   const {
     userId,
-    personalData: { name, phone, email, address, summary },
+    personalData: { name, phone, email, address, position, summary },
     links,
     skills,
     languages,
@@ -58,7 +58,7 @@ router.post("/curriculums", (req, res, next) => {
 
   const newCurriculum = {
     userId,
-    personalData: { name, phone, email, address, summary },
+    personalData: { name, phone, email, address, position, summary },
     links,
     skills,
     languages,
@@ -85,7 +85,7 @@ router.put("/curriculums/:curriculumId", (req, res, next) => {
 
   const { 
     userId,
-    personalData: { name, phone, email, address, summary },
+    personalData: { name, phone, email, address, position, summary },
     links,
     skills,
     languages,
@@ -97,7 +97,7 @@ router.put("/curriculums/:curriculumId", (req, res, next) => {
 
   const newRequestBody = {
     userId,
-    personalData: { name, phone, email, address, summary },
+    personalData: { name, phone, email, address, position, summary },
     links,
     skills,
     languages,
