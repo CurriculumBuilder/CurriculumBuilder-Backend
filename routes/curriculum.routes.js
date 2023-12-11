@@ -1,6 +1,7 @@
 const router = require("express").Router(); 
 const Curriculum = require("../models/Curriculum.model");
 const mongoose = require("mongoose");
+const User = require("../models/User.model");
 
 
 // GET /curriculums/:curriculumId
@@ -22,6 +23,23 @@ router.get("/curriculums/:curriculumId", (req, res) => {
         res.status(500).send({ error: "Failed to retrieve curriculum" });
       });
   });
+
+
+
+  //GET /curriculums/
+
+router.get("/curriculums", (req, res) => {
+ console.log(req.payload)
+  Curriculum.find({userId: req.payload._id})
+    .then((curriculum) => {
+      console.log("Retrieved curriculum ->", curriculum);
+      res.json(curriculum);
+    })
+    .catch((error) => {
+      console.error("Error while retrieving curriculum ->", error);
+      res.status(500).send({ error: "Failed to retrieve curriculum" });
+    });
+});
 
 
 //POST /curriculums
