@@ -7,13 +7,14 @@ const curriculumSchema = new Schema({
       phone: { type: String, required: true },
       email: { type: String, required: true },
       address: { type: String, required: true },
-      position: {type: String, required: true},
+      position: { type: String, required: true },
       summary: { type: String, required: true, maxlength: 400 },
     },
   
-    links: {
-        type: [String]
-    },
+    links: [{
+      label: { type: String, required: true },
+      url: { type: String, required: true },
+    }],
   
     skills: {
       type: [String],

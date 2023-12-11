@@ -59,7 +59,7 @@ router.post("/curriculums", (req, res, next) => {
   const newCurriculum = {
     userId,
     personalData: { name, phone, email, address, position, summary },
-    links,
+    links: links.map(link => ({ label: link.label, url: link.url })),
     skills,
     languages,
     projects,
