@@ -12,8 +12,8 @@ const curriculumSchema = new Schema({
     },
   
     links: [{
-      label: { type: String, required: true },
-      url: { type: String, required: true },
+      label: { type: String },
+      url: { type: String },
     }],
   
     skills: {
